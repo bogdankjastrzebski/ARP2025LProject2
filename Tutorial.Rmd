@@ -1,9 +1,83 @@
+---
+author: "Bogdan Jastrzębski"
+title: "Tutorial for Linear Regression Example Package"
+date: "March 20, 2025"
+output: html_document
+---
 
 
+# Linear Regression Tutorial
+
+The following is a tutorial for a [linear regression](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley) package
+created for the project 2 of **Advanced R Programming** course,
+2025, summer semester. The code can be found in [the github repository][1].
+
+## Package Installation
+
+Install the package from [the github repository][1]:
+```{r}
+devtools::install_github(repo = "bogdankjastrzebski/ARP2025LProject2", force=TRUE)
+```
+and load the library:
+```{r}
+library(ARP2025LProject2)
+```
+
+## Linear Regression Usage
+
+The library exports the following functions:
+
+* `S3method(plot,linreg)`
+* `export(evaluate)`
+* `export(generate_data)`
+* `export(linear_regression)`
+
+Generate fake data:
+```{r}
+linreg_data = generate_data(128, 16)
+
+X = linreg_data$X
+Y = linreg_data$Y
+B = linreg_data$B
+```
+the data looks roughly like this:
+```{r}
+knitr::kable(round(data.frame(head(X)), 2), caption="First rows of our generated data.")
+```
+
+Fit the model to the data with L2 regularization:
+```{r}
+linreg = linear_regression(X, Y, reg=0.1)
+```
+
+Plot residuals:
+```{r}
+plot(linreg)
+```
+
+# Discussion
+
+The residual plot should show a sample from the normal distribution.
+Otherwise you should probably use a different model.
+
+If we make 100 row training set and 28 validation, the `evaluate` function:
+
+| r.squared | adj.r.squared | mse |
+|---|---|---|
+| 0.9415951 | 0.8566425 | 1.768494 |
 
 
+# Project Checklist:
+- [x] headings of different sizes (minimum two),
+- [x] at least three chunks,
+- [x] a list,
+- [x] a hyperlink,
+- [x] a plot,
+- [x] and a table.
 
 
+# References
+1. ["A tutorial on linear regression models. 202, Journal of Applied Statistics and Data Mining, 2005"][2]
 
-
-
+[1]: https://github.com/bogdankjastrzebski/ARP2025LProject2 "the github repository"
+[2]: https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley "linear regression"
