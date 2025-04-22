@@ -28,7 +28,7 @@ generate_data = function(n_row, n_col, std=1) {
     )
     B = rnorm(n_col)
     X = matrix(rnorm(n_row * n_col), n_row, n_col)
-    Y = X %*% B + std * rnorm(n_row)
+    Y = as.vector(X %*% B + std * rnorm(n_row))
     structure(
         list(B=B, X=X, Y=Y),
         class='linreg_data'

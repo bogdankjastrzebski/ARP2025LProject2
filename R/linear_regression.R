@@ -10,6 +10,8 @@
 #'
 #' @return An object of class "linreg" containing:
 #'   \item{beta}{The estimated regression coefficients.}
+#'   \item{X}{The input data X.}
+#'   \item{Y}{The input data Y.}
 #'   \item{reg}{The regularization parameter used.}
 #'
 #' @examples
@@ -44,7 +46,7 @@ linear_regression = function(X, Y, reg=0) {
     )
 
     structure(
-        list(beta=beta, reg=reg),
+        list(beta=beta, X=X, Y=Y, reg=reg),
         class='linreg'
     )
 }

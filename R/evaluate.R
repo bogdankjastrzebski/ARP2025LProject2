@@ -22,36 +22,36 @@
 #'
 #' @export
 evaluate = function(linreg, X, Y) {
-  stopifnot(
-    "linreg must be an object of class 'linreg'." = inherits(linreg, "linreg"),
-    "X is not a matrix." = is.matrix(X),
-    "Y is not a vector." = is.vector(Y),
-    "X is not numeric." = is.numeric(X),
-    "Y is not numeric." = is.numeric(Y),
-    "Number of rows in X must equal the length of Y." = nrow(X) == length(Y),
-    "Number of columns in X must match the length of the coefficients in linreg." =
-      ncol(X) == length(linreg$beta)
-  )
+    stopifnot(
+        "linreg must be an object of class 'linreg'." = inherits(linreg, "linreg"),
+        "X is not a matrix." = is.matrix(X),
+        "Y is not a vector." = is.vector(Y),
+        "X is not numeric." = is.numeric(X),
+        "Y is not numeric." = is.numeric(Y),
+        "Number of rows in X must equal the length of Y." = nrow(X) == length(Y),
+        "Number of columns in X must match the length of the coefficients in linreg." =
+            ncol(X) == length(linreg$beta)
+    )
 
-  predictions <- X %*% linreg$beta
-  residuals <- predictions - Y
+    predictions <- X %*% linreg$beta
+    residuals <- predictions - Y
 
-  n <- length(Y)
-  p <- ncol(X)
+    n <- length(Y)
+    p <- ncol(X)
 
-  tss <- sum((Y - mean(Y))^2) # total sum of squares
-  rss <- sum(residuals^2) # sum of square residuals
+    tss <- sum((Y - mean(Y))^2) # total sum of squares
+    rss <- sum(residuals^2) # sum of square residuals
 
-  r.squared <- 1 - (rss / tss)
-  adj.r.squared <- 1 - ( (1 - r.squared) * (n - 1) / (n - p - 1))
-  mse <- mean(residuals^2)
+    r.squared <- 1 - (rss / tss)
+    adj.r.squared <- 1 - ( (1 - r.squared) * (n - 1) / (n - p - 1))
+    mse <- mean(residuals^2)
 
-  structure(
-    list(
-      r.squared=r.squared,
-      adj.r.squared=adj.r.squared,
-      mse=mse
-    ),
-    class="linreg_results"
-  )
+    structure(
+        list(
+            r.squared=r.squared,
+            adj.r.squared=adj.r.squared,
+            mse=mse
+        ),
+        class="linreg_results"
+    )
 }
