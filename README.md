@@ -4,6 +4,8 @@ Project 2 Advanced R Programming
 The following is the repository of the project 2 of **Advanced R Programming** course,
 2025, summer semester. The code can be found in the github repository <https://github.com/bogdankjastrzebski/ARP2025LProject2>.
 
+Please, review the online repository -- it might have some new changes as compared to the version "May 04".
+
 
 # Generating Data
 ```R
