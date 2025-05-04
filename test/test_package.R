@@ -34,15 +34,11 @@ make_example_data = function() {
 
 
 knit_tutorial = function() {
-
     # install.packages("rmarkdown")
     # install.packages("knitr")
-
     library(knitr)
     library(rmarkdown)
-    
     knit("Tutorial.Rmd")
-
     rmarkdown::render("Tutorial.Rmd")
 
 }
